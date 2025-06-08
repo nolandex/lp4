@@ -6,28 +6,14 @@ import { Button } from "../ui/button";
 const Hero = () => {
   return (
     <div className="flex flex-col items-center text-center w-full max-w-5xl my-16 mx-auto z-40 relative px-4">
-      <style jsx>{`
-        @keyframes shine {
-          0% {
-            background-position: 200% center;
-          }
-          100% {
-            background-position: -200% center;
-          }
-        }
-
-        .animate-text-gradient {
-          animation: shine 3s linear infinite;
-          background-size: 200% 100%;
-        }
-      `}</style>
-
       <div className="pl-2 pr-1 py-1 rounded-full border border-foreground/10 hover:border-foreground/15 backdrop-blur-lg cursor-pointer flex items-center gap-2.5 select-none w-max mx-auto">
         <div className="w-3.5 h-3.5 rounded-full bg-primary/40 flex items-center justify-center relative">
           <div className="w-2.5 h-2.5 rounded-full bg-primary/60 flex items-center justify-center animate-ping absolute"></div>
           <div className="w-1.5 h-1.5 rounded-full bg-primary flex items-center justify-center absolute"></div>
         </div>
-        <span className="inline-flex items-center justify-center gap-2 bg-[linear-gradient(110deg,#b2a8fd,45%,#8678f9,55%,#c7d2fe)] bg-clip-text text-sm text-transparent animate-text-gradient">
+        <span
+          className="inline-flex items-center justify-center gap-2 text-sm bg-[linear-gradient(110deg,#b2a8fd,45%,#8678f9,55%,#c7d2fe)] bg-[length:200%_100%] bg-clip-text text-transparent animate-shimmer"
+        >
           Build for the future
           <span className="text-xs text-secondary-foreground px-1.5 py-0.5 rounded-full bg-gradient-to-b from-foreground/20 to-foreground/10 flex items-center justify-center">
             What&apos;s new
