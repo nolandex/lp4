@@ -11,7 +11,7 @@ const Hero = () => {
           <div className="w-2.5 h-2.5 rounded-full bg-primary/60 flex items-center justify-center animate-ping absolute"></div>
           <div className="w-1.5 h-1.5 rounded-full bg-primary flex items-center justify-center absolute"></div>
         </div>
-        <span className="inline-flex items-center justify-center gap-2 animate-text-gradient bg-gradient-to-r from-[#b2a8fd] via-[#8678f9] to-[#c7d2fe] bg-[200%_auto] bg-clip-text text-sm text-transparent">
+        <span className="inline-flex items-center justify-center gap-2 animate-text-gradient bg-[linear-gradient(110deg,#b2a8fd,45%,#8678f9,55%,#c7d2fe)] bg-[length:200%_100%] bg-clip-text text-sm text-transparent">
           Build for the future
           <span className="text-xs text-secondary-foreground px-1.5 py-0.5 rounded-full bg-gradient-to-b from-foreground/20 to-foreground/10 flex items-center justify-center">
             What&apos;s new
