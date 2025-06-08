@@ -8,20 +8,12 @@ import {
 } from "@/components/ui/accordion";
 import Container from "../global/container";
 import Wrapper from "../global/wrapper";
-import { Particles } from "../ui/particles";
 
 const Footer = () => {
     return (
-        <footer className="w-full py-10 relative">
+        <footer className="w-full py-10">
             <Container>
-                <Wrapper className="relative flex flex-col items-center pb-40 overflow-hidden footer">
-                    <Particles
-                        className="absolute inset-0 w-full -z-10"
-                        quantity={40}
-                        ease={10}
-                        color="#d4d4d8"
-                        refresh
-                    />
+                <Wrapper className="flex flex-col items-center pb-20">
                     <div className="flex flex-col items-center text-center">
                         <h1 className="text-2xl font-bold mb-6">Frequently Asked Questions</h1>
                         <Accordion type="single" collapsible className="w-full max-w-2xl">
@@ -54,7 +46,7 @@ const Footer = () => {
                 </Wrapper>
             </Container>
             <Container>
-                <Wrapper className="pt-10 flex items-center justify-center relative">
+                <Wrapper className="pt-10 flex items-center justify-center">
                     <p className="text-sm text-secondary-foreground">
                         © {new Date().getFullYear()} Luro. All rights reserved.
                     </p>
