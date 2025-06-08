@@ -1,29 +1,37 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-const isProtectedRoute = createRouteMatcher(["/app(.*)"]);
-const isPublicRoute = createRouteMatcher(["/", "/marketing(.*)"]);
-const isAuthRoute = createRouteMatcher(["/auth(.*)"]);
+const PUBLIC_ROUTES = ["/", "/marketing"];
+const AUTH_ROUTES = ["/auth"];
+const PROTECTED_PREFIX = "/app";
 
-export default clerkMiddleware((auth, req) => {
-    const { userId } = auth();
+export function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
 
-    // Allow public routes
-    if (isPublicRoute(req)) {
-        return NextResponse.next();
-    }
+  const isPublic = PUBLIC_ROUTES.some((route) => pathname.startsWith(route));
+  const isAuth = AUTH_ROUTES.some((route) => pathname.startsWith(route));
+  const isProtected = pathname.startsWith(PROTECTED_PREFIX);
 
-    // Redirect unauthenticated users to sign in
-    if (!userId && isProtectedRoute(req)) {
-        return NextResponse.redirect(new URL("/auth/signin", req.url));
-    }
+  // Simulasi pengecekan login (ganti dengan session check atau cookie check)
+  const isLoggedIn = false; // Ganti ini sesuai logikamu
 
-    // Check for authenticated users trying to access auth routes
-    if (userId && isAuthRoute(req)) {
-        return NextResponse.redirect(new URL("/app", req.url));
-    }
-});
+  if (isPublic) {
+    return NextResponse.next();
+  }
+
+  if (isProtected && !isLoggedIn) {
+    const signInUrl = new URL("/auth/signin", req.url);
+    return NextResponse.redirect(signInUrl);
+  }
+
+  if (isAuth && isLoggedIn) {
+    const appUrl = new URL("/app", req.url);
+    return NextResponse.redirect(appUrl);
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-    matcher: ["/((?!.*\\..*|_next).*)", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.*\\..*|_next).*)", "/(api|trpc)(.*)"],
 };
